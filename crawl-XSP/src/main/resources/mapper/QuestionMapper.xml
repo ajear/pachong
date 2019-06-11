@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo2.dao.QuestionMapper">
+
+
+    <select id="getTextById" parameterType="com.example.demo2.entity.Question" resultType="com.example.demo2.entity.Question">
+		SELECT * FROM spider_question WHERE ID = #{id}
+	</select>
+
+    <insert id="insertQuestion"
+			useGeneratedKeys="true" keyProperty="id"
+			parameterType="com.example.demo2.entity.Question">
+		insert
+		into
+		spider_question(text,status,type,url)
+		values(#{text},#{status},#{type},#{url})
+	</insert>
+
+	<insert id="insertAnswer"
+			parameterType="com.example.demo2.entity.Answer">
+		insert
+		into
+		spider_answer(text, questionid,status)
+		values (#{text},#{questionid},#{status})
+
+	</insert>
+
+</mapper>
